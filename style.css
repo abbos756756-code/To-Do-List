@@ -394,6 +394,23 @@ body {
   filter: brightness(1.1);
 }
 
+.btn-magic {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  color: #fff;
+  box-shadow: 0 6px 16px -2px rgba(217, 70, 239, 0.4);
+  white-space: nowrap;
+}
+
+.btn-magic:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px -2px rgba(217, 70, 239, 0.6);
+  filter: brightness(1.1);
+}
+
+.btn-magic:active {
+  transform: translateY(0);
+}
+
 /* ==========================================================================
    7. QIDIRUV VA FILTRLAR (Controls Panel)
    ========================================================================== */
@@ -483,15 +500,22 @@ body {
 
 .todo-item {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  flex-direction: column;
   background: rgba(15, 23, 42, 0.5);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   padding: 14px 16px;
+  gap: 10px;
   transition: var(--transition);
   animation: slideIn 0.3s ease-out;
+}
+
+.todo-main-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
 }
 
 .todo-item:hover {
@@ -698,6 +722,213 @@ body {
 .icon-btn.btn-delete:hover {
   color: #f43f5e;
   background: rgba(244, 63, 94, 0.12);
+}
+
+.icon-btn.btn-add-subtask:hover {
+  color: #c084fc;
+  background: rgba(168, 85, 247, 0.12);
+}
+
+/* ==========================================================================
+   KICHIK VAZIFALAR (SUB-TASKS) STILLARI
+   ========================================================================== */
+.subtasks-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(168, 85, 247, 0.12);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  color: #c084fc;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.subtasks-toggle-btn:hover {
+  background: rgba(168, 85, 247, 0.22);
+  color: #e9d5ff;
+}
+
+.subtasks-toggle-btn .toggle-arrow {
+  font-size: 9px;
+  transition: transform 0.2s ease;
+}
+
+.subtasks-toggle-btn.open .toggle-arrow {
+  transform: rotate(180deg);
+}
+
+/* Subtasks yig'iluvchi paneli */
+.subtasks-drawer {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  margin-top: 4px;
+  animation: fadeIn 0.2s ease;
+}
+
+.subtasks-drawer.open {
+  display: flex;
+}
+
+/* Subtasks progress bari */
+.subtasks-progress-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: 2px;
+}
+
+.subtasks-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #a855f7, #10b981);
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease;
+}
+
+/* Subtask ro'yxati */
+.subtasks-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.subtask-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.02);
+  transition: var(--transition);
+}
+
+.subtask-row:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.subtask-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.subtask-checkbox {
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--text-dim);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.subtask-checkbox i {
+  font-size: 9px;
+  color: #fff;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: var(--transition);
+}
+
+.subtask-row.completed .subtask-checkbox {
+  background: #10b981;
+  border-color: #10b981;
+}
+
+.subtask-row.completed .subtask-checkbox i {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.subtask-text {
+  font-size: 12.5px;
+  color: var(--text-main);
+  transition: var(--transition);
+  word-break: break-word;
+}
+
+.subtask-row.completed .subtask-text {
+  text-decoration: line-through;
+  color: var(--text-dim);
+}
+
+.subtask-del-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-size: 11px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  opacity: 0.6;
+  transition: var(--transition);
+}
+
+.subtask-del-btn:hover {
+  color: #f43f5e;
+  opacity: 1;
+  background: rgba(244, 63, 94, 0.12);
+}
+
+/* Yangi qadam qo'shish inputi */
+.subtask-add-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.subtask-add-row input {
+  flex: 1;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-family: inherit;
+  font-size: 12px;
+  color: var(--text-main);
+  outline: none;
+  transition: var(--transition);
+}
+
+.subtask-add-row input:focus {
+  border-color: var(--accent-primary);
+}
+
+.subtask-add-btn {
+  background: rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  color: #a5b4fc;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.subtask-add-btn:hover {
+  background: rgba(99, 102, 241, 0.35);
+  color: #fff;
 }
 
 /* Bo'sh holat (Empty State) */

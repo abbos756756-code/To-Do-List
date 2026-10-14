@@ -4,6 +4,7 @@ HTML5, zamonaviy CSS3 (Glassmorphism & Dark Mode) va toza JavaScript (ES6+) asos
 
 ## ✨ Imkoniyatlar
 
+- 🪄 **Aqlli Maydalash (AI / Smart Sub-tasks)**: Katta va murakkab maqsadlarni avtomatik ravishda 4-5 ta kichik bosqichlarga ajratish, har bir qadam uchun checklist va mini progress bar.
 - 🎨 **Zamonaviy Glassmorphism dizayn**: Neon nurlar, mayin animatsiyalar va qulay to'q mavzu (Dark Mode).
 - ⏰ **Budilnik va Ovozli Eslatma**: Belgilangan vaqt yetib kelganda Web Audio API orqali yoqimli va baland qo'ng'iroq (chime bell) tovushi yangraydi.
 - 🔔 **Desktop Bildirishnomalar**: Brauzer boshqa oynada turganda ham kompyuter ekraniga eslatma xabari chiqadi.

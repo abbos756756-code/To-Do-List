@@ -78,10 +78,16 @@
           <input type="datetime-local" id="dueTimeInput" aria-label="Eslatma vaqti" title="Eslatma vaqti">
         </div>
         
-        <!-- Qo'shish tugmasi -->
-        <button type="submit" id="addBtn" class="btn btn-primary">
+        <!-- Oddiy qo'shish tugmasi -->
+        <button type="submit" id="addBtn" class="btn btn-primary" title="Oddiy vazifa qo'shish">
           <i class="fa-solid fa-plus"></i>
           <span>Qo'shish</span>
+        </button>
+
+        <!-- Aqlli maydalash (AI Decompose) tugmasi -->
+        <button type="button" id="decomposeBtn" class="btn btn-magic" title="Katta vazifani avtomatik mayda bosqichlarga bo'lish">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span>Bosqichlarga bo'lish</span>
         </button>
       </div>
     </form>
