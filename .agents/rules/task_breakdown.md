@@ -1,31 +1,49 @@
-# Katta vazifalarni qismlarga bo'lish qoidasi (Task Decomposition Rule)
+# 📐 Vazifalarni Texnologiyalar va Tillar Bo'yicha Maydalab Berish Qoidasi (Architecture & Language Breakdown Rule)
 
-Har qanday katta yoki murakkab vazifa berilganda, uni to'g'ridan-to'g'ri birdaniga yozib ketmasdan, quyidagi qatlamlarga (qat'iy tartibda) mayda bo'laklarga ajratib, tushuntirib ko'rsatish shart:
+Har qanday yangi vazifa kiritilganda, uni amalga oshirishdan oldin yoki tushuntirish davomida **har bir dasturlash tili va texnologiyani alohida ajratib**, quyidagi qat'iy formatda detallari bilan tayyorlab beriladi:
 
-1. **HTML (Tuzilma va Skelet)**:
-   - Qanday semantik teglar kerak?
-   - Formlar, kiritish maydonlari, modallar va konteynerlar ro'yxati.
-   - Id va sinflar nomlanishi.
+---
 
-2. **CSS (Dizayn, Stil va UI/UX)**:
-   - Ranglar va dizayn tokenlari (:root o'zgaruvchilari).
-   - Layout tuzilishi (Flexbox, CSS Grid).
-   - Animatsiyalar va mikro-o'zaro ta'sirlar (@keyframes, hover, transition).
-   - Mobil moslashuvchanlik (@media responsive).
+### 1. 🦴 HTML (Markup & Semantika)
+- **Vazifasi**: Sahifaning suyagi, tuzilishi va qaysi elementlar qayerda turishini belgilash.
+- **Detallari**:
+  - Kerakli semantik teglar (`<header>`, `<main>`, `<dialog>`, `<form>`, `<section>`);
+  - Kiritish maydonlari (`<input>`, `<select>`, `<button>`);
+  - Elementlarning unikal `id`, `class` va `data-*` atributlari;
+  - Accessibility (`aria-label`, `role`).
 
-3. **JavaScript / Front-End (Mantiq va Interaktivlik)**:
-   - State (holat) boshqaruvi.
-   - DOM hodisalarini ushlash (Event Listeners & Event Delegation).
-   - Brauzer API lari (LocalStorage, Web Audio, Notification va h.k.).
-   - CRUD amallari va funksiyalar mantig'i.
+### 2. 🎨 CSS (Stil, Dizayn va Animatsiyalar)
+- **Vazifasi**: Foydalanuvchi ko'radigan vizual qiyofa, ranglar palitrasi, joylashuv va animatsiyalar.
+- **Detallari**:
+  - `:root` o'zgaruvchilari (ranglar, gradientlar, radiuslar, soyalar);
+  - Joylashuv qoidalari (Flexbox, CSS Grid);
+  - Mikro-animatsiyalar va o'tishlar (`@keyframes`, `transition`, hover/active);
+  - Moslashuvchanlik (`@media screen and (max-width: ...)`).
 
-4. **BackEnd (Server, API va Ma'lumotlar bazasi)** *(agar loyihada bo'lsa)*:
-   - API Endpointlar (REST / GraphQL: GET, POST, PUT, DELETE).
-   - Controllerlar va biznes mantiq.
-   - Ma'lumotlar bazasi modellari / jadvallari (SQL / NoSQL sxemalari).
-   - Xavfsizlik, validatsiya va autentifikatsiya (JWT, CORS, Sanitization).
+### 3. ⚡ JavaScript / TypeScript (Front-End Mantig'i)
+- **Vazifasi**: Sahifadagi jonlilik, foydalanuvchi harakatlarini boshqarish va brauzer imkoniyatlaridan foydalanish.
+- **Detallari**:
+  - Dastur holati (`State`: o'zgaruvchilar, massivlar va ob'ektlar tuzilishi);
+  - DOM hodisalari (`addEventListener`, Event Delegation);
+  - Brauzer API lari (`localStorage`, `Web Audio API`, `Notification API`, `fetch`);
+  - Algoritmlar, CRUD amallari va funksiyalar ro'yxati.
 
-5. **Boshqalar (Testlash, Git va Deploy)**:
-   - Loyihani qadamma-qadam integratsiya qilish rejasi.
-   - Git commitlar va versiyalash.
-   - Sinov va xatolarni tekshirish (Testing).
+### 4. 🗄️ BackEnd (Server Tili: Node.js / Python / PHP / Java / Go)
+- **Vazifasi**: Ma'lumotlarni xavfsiz saqlash, biznes mantig'i, server hisob-kitoblari va API yaratish.
+- **Detallari**:
+  - **Dasturlash tili va framework** (masalan: Node.js + Express, Python + FastAPI/Django);
+  - **API Endpointlar** (URL yo'llari: `GET`, `POST`, `PUT`, `DELETE`);
+  - **Validatsiya va Sanitizatsiya** (xakerlik hujumlaridan himoya);
+  - **Autentifikatsiya** (JWT tokenlar, sessiyalar, parollarni xeshlash).
+
+### 5. 💾 Ma'lumotlar Bazasi (SQL / PostgreSQL / MySQL yoki NoSQL / MongoDB)
+- **Vazifasi**: Ma'lumotlarni doimiy, strukturalangan va tezkor saqlash.
+- **Detallari**:
+  - Jadvallar yoki Kolleksiyalar sxemasi (Sxema dizayni);
+  - Maydonlar turlari (`id`, `title`, `created_at`, `status`, bog'lanishlar — Foreign Keys);
+  - Asosiy so'rovlar (SQL CRUD so'rovlari).
+
+### 6. 🛠️ Boshqalar (DevOps, Git, Testlash va Xavfsizlik)
+- Git commitlar va GitHub repozitoriya boshqaruvi;
+- Xavfsizlik qoidalari (CORS, Environment variables `.env`);
+- Qadamma-qadam integratsiya qilish rejasi.
