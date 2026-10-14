@@ -23,6 +23,6 @@ HTML5, zamonaviy CSS3 (Glassmorphism & Dark Mode) va toza JavaScript (ES6+) asos
 
 1. Loyihani yuklab oling yoki klonlang:
    ```bash
-   git clone https://github.com/abbos756756-kod/ToDoList.git
+   git clone https://github.com/abbos756756-code/To-Do-List.git
    ```
 2. `index.html` faylini brauzeringizda oching.
