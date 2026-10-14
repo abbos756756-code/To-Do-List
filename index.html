@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vazifalar Menejeri — To-Do List</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Asosiy CSS faylimiz -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Orqa fon uchun chiroyli nur effektlari (Ambient Glows) -->
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+
+  <!-- Asosiy Dastur Konteyneri -->
+  <main class="app-container">
+    
+    <!-- Dastur Sarlavhasi va Sana -->
+    <header class="app-header">
+      <div class="header-left">
+        <div class="logo-icon">
+          <i class="fa-solid fa-check-double"></i>
+        </div>
+        <div>
+          <h1 class="app-title">Rejalarim</h1>
+          <p class="current-date" id="currentDate">Bugun</p>
+        </div>
+      </div>
+      <div class="badge-status" id="taskSummaryBadge">0 vazifa</div>
+    </header>
+
+    <!-- Bajarilish Ko'rsatkichi (Progress Bar) -->
+    <section class="progress-section" aria-label="Jarayon">
+      <div class="progress-info">
+        <span class="progress-label">Bajarilish darajasi</span>
+        <span class="progress-percent" id="progressPercent">0%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progressBarFill"></div>
+      </div>
+    </section>
+
+    <!-- Yangi Vazifa Qo'shish Formasi -->
+    <form class="todo-form" id="todoForm">
+      <div class="input-group">
+        <i class="fa-solid fa-pencil input-icon"></i>
+        <input 
+          type="text" 
+          id="taskInput" 
+          placeholder="Yangi vazifa nomini yozing..." 
+          autocomplete="off" 
+          required
+        >
+      </div>
+      
+      <div class="form-actions">
+        <!-- Muhimlik darajasi tanlovi -->
+        <div class="select-wrapper">
+          <select id="prioritySelect" aria-label="Muhimlik darajasi">
+            <option value="low">🟢 Oddiy</option>
+            <option value="medium" selected>🟡 O'rta</option>
+            <option value="high">🔴 Yuqori</option>
+          </select>
+        </div>
+
+        <!-- Eslatma / Jiringlash vaqti -->
+        <div class="time-wrapper">
+          <i class="fa-regular fa-clock time-icon"></i>
+          <input type="datetime-local" id="dueTimeInput" aria-label="Eslatma vaqti" title="Eslatma vaqti">
+        </div>
+        
+        <!-- Qo'shish tugmasi -->
+        <button type="submit" id="addBtn" class="btn btn-primary">
+          <i class="fa-solid fa-plus"></i>
+          <span>Qo'shish</span>
+        </button>
+      </div>
+    </form>
+
+    <!-- Qidiruv va Filtrlash Paneli -->
+    <section class="controls-panel">
+      <!-- Qidiruv maydoni -->
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Vazifalardan qidirish...">
+      </div>
+
+      <!-- Filtr tugmalari -->
+      <div class="filter-tabs" role="tablist">
+        <button type="button" class="filter-btn active" data-filter="all">Barchasi</button>
+        <button type="button" class="filter-btn" data-filter="active">Jarayonda</button>
+        <button type="button" class="filter-btn" data-filter="completed">Bajarilgan</button>
+      </div>
+    </section>
+
+    <!-- Vazifalar Ro'yxati -->
+    <section class="tasks-section">
+      <ul class="todo-list" id="todoList">
+        <!-- JavaScript orqali vazifalar bu yerga dinamik qo'shiladi -->
+      </ul>
+
+      <!-- Vazifalar yo'q bo'lganda chiqadigan xabar (Empty State) -->
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">
+          <i class="fa-regular fa-clipboard"></i>
+        </div>
+        <h3>Hozircha vazifalar yo'q</h3>
+        <p>Yuqoridagi maydon orqali birinchi rejangizni kiriting!</p>
+      </div>
+    </section>
+
+    <!-- Dastur pastki paneli (Statistika va Tozalash) -->
+    <footer class="app-footer">
+      <span class="items-left" id="itemsLeft">0 ta vazifa qoldi</span>
+      <button type="button" id="clearCompletedBtn" class="btn-text">
+        <i class="fa-regular fa-trash-can"></i>
+        Bajarilganlarni tozalash
+      </button>
+    </footer>
+
+  </main>
+
+  <!-- Budilnik / Eslatma Modali (Alarm Modal Popup) -->
+  <div class="alarm-modal-backdrop" id="alarmModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="alarm-modal">
+      <div class="alarm-bell-icon">
+        <i class="fa-solid fa-bell"></i>
+      </div>
+      <span class="alarm-badge">⏰ Vaqt yetib keldi!</span>
+      <h2 class="alarm-task-title" id="alarmTaskTitle">Vazifa nomi</h2>
+      <p class="alarm-task-time" id="alarmTaskTime">16:30</p>
+      
+      <div class="alarm-actions">
+        <button type="button" class="btn btn-secondary" id="dismissAlarmBtn">
+          <i class="fa-solid fa-bell-slash"></i>
+          <span>Ovozni to'xtatish</span>
+        </button>
+        <button type="button" class="btn btn-success" id="completeAlarmBtn">
+          <i class="fa-solid fa-check"></i>
+          <span>Bajarildi deb belgilash</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Kodimiz -->
+  <script src="script.js"></script>
+</body>
+</html>
